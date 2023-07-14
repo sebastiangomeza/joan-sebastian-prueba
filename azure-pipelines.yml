@@ -17,3 +17,21 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'sonarCloud'
+    organization: 'joangomez'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'sebas970218_SonarPipeline'
+    cliProjectName: 'SonarPipeline'
+    cliSources: '.'
+
+- task: SonarCloudAnalyze@1
+  inputs:
+    jdkversion: 'JAVA_HOME_11_X64'
+  
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
