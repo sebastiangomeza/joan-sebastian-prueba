@@ -7,6 +7,7 @@ async function createLog(req,res,next) {
         await Log.create({ endpoint: url });
         next()
     } catch (error) {
+        console.log(error);
         next()
     }
 
